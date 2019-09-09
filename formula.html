@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<link rel="stylesheet" href="style.css">
+	<title>Molecule to atoms</title>
+
+	<style></style>
+</head>
+<body>
+<div class="container">
+	<div class="text-box">
+		<div class="title">
+			<h1>Molecule to atoms</h1>
+
+			<a href="https://www.codewars.com/kata/molecule-to-atoms/train/javascript" target="_blank" class="link">Original task was taken here</a>
+		</div>
+		<div class="text">
+			<p>For a given chemical formula represented by a string, count the number of atoms of each element contained
+				in the molecule and return an object (associative array in PHP, Dictionary<string, int> in C#, Map
+					<String,Integer> in Java).</p>
+			<p>For example:</p>
+
+			<pre>var water = 'H2O';
+parseMolecule(water); // return {H: 2, O: 1}
+
+var magnesiumHydroxide = 'Mg(OH)2';
+parseMolecule(magnesiumHydroxide); // return {Mg: 1, O: 2, H: 2}
+
+var fremySalt = 'K4[ON(SO3)2]2';
+parseMolecule(fremySalt); // return {K: 4, O: 14, N: 2, S: 4}</pre>
+
+			<p>As you can see, some formulas have brackets in them. The index outside the brackets tells you that you
+				have to multiply count of each atom inside the bracket on this index. For example, in Fe(NO3)2 you have
+				one iron atom, two nitrogen atoms and six oxygen atoms.</p>
+			<p>Note that brackets may be round, square or curly and can also be nested. Index after the braces is
+				optional.</p>
+		</div>
+
+		<form class="form parseMolecule">
+			<input type="text" class="input" placeholder="Try here" value="H2O">
+			<button type="submit" class="btn">Submit</button>
+		</form>
+
+		<div class="result text-box">
+			<div class="text">
+				<pre id="result"></pre>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="fsm.js"></script>
+<script>
+var form = document.querySelector(".parseMolecule");
+form.addEventListener("submit", function(e){
+	e.preventDefault();
+	var formula = this.querySelector(".input").value;
+	var target = document.getElementById("result");
+
+	target.innerText = JSON.stringify(parseMolecule(formula), null, " ");
+	target.closest(".result").classList.add("visible");
+	
+});
+</script>
+</body>
+
+</html>
